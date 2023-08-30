@@ -82,27 +82,12 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
         md.required.set(true)
     }
 }
-//detekt {
-//    // Define the detekt configuration(s) you want to use.
-//    // Defaults to the default detekt configuration.
-//    config.setFrom("path/to/config.yml")
-//
-//    // Applies the config files on top of detekt's default config file. `false` by default.
-//    buildUponDefaultConfig = false
-//
-//    // Turns on all the rules. `false` by default.
-//    allRules = false
-//
-//    // Specifying a baseline file. All findings stored in this file in subsequent runs of detekt.
-//    baseline = file("path/to/baseline.xml")
-//
-//    // Disables all default detekt rulesets and will only run detekt with custom rules
-//    // defined in plugins passed in with `detektPlugins` configuration. `false` by default.
-//    disableDefaultRuleSets = false
-//
-//    // Adds debug output during task execution. `false` by default.
-//    debug = false
-//
-//    // Kill switch to turn off the Compiler Plugin execution entirely.
-//    enableCompilerPlugin = true
-//}
+tasks.register<Copy>("installGitHook") {
+    description = "Install Git hook"
+    group = "custom"
+    from(File(rootProject.rootDir, "scripts/pre-commit"))
+    into { File(rootProject.rootDir, ".git/hooks") }
+    fileMode = 777
+}
+
+tasks.getByName("preBuild").dependsOn("installGitHook")

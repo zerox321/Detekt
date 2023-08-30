@@ -28,10 +28,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-fun test()
-{
-    TODO("Later will be handled by dev team")
-}
+fun test() { TODO("Later will be handled by dev team") }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {

@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Running Detekt before commit..."
+
+./gradlew detektCheck --daemon
+
+STATUS=$?
+
+# Return 1 exit code if Detekt checks fail
+[ $STATUS -ne 0 ] && exit 1
+exit 0
