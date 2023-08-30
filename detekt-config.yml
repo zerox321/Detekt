@@ -1,0 +1,7 @@
+autoCorrect: true
+
+# Specify the rules you want to enforce
+# rules:
+#   - complexity
+#   - style
+#   - ...
